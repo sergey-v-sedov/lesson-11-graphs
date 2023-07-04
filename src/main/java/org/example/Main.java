@@ -32,19 +32,19 @@ public class Main {
         Node node4 = new Node();
         node4.value = "Узел 4";
 
-        node1.nodes.add(node2);
-        node1.nodes.add(node3);
+        node1.nodes.add(new Edge(node2, 5));
+        node1.nodes.add(new Edge(node3, 3));
 
-        node2.nodes.add(node1);
-        node2.nodes.add(node3);
-        node2.nodes.add(node4);
+        node2.nodes.add(new Edge(node1, 4));
+        node2.nodes.add(new Edge(node3, 1));
+        node2.nodes.add(new Edge(node4, 1));
 
-        node3.nodes.add(node1);
-        node3.nodes.add(node2);
-        node3.nodes.add(node4);
+        node3.nodes.add(new Edge(node1, 2));
+        node3.nodes.add(new Edge(node2, 0));
+        node3.nodes.add(new Edge(node4, 7777));
 
-        node4.nodes.add(node2);
-        node4.nodes.add(node3);
+        node4.nodes.add(new Edge(node2, 7));
+        node4.nodes.add(new Edge(node3, 33));
 
         node1.print();
         node2.print();
