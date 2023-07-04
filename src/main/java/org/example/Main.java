@@ -1,18 +1,11 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
 
-        int[][] matrix = new int[][]{
-                {0, 1, 1, 0},
-                {1, 0, 1, 1},
-                {1, 1, 0, 1},
-                {0, 1, 1, 0}
-        };
+
 
         List<List<Integer>> dynamicMatrix = new ArrayList<>();
         dynamicMatrix.add(Arrays.asList(0, 1, 1, 0));
@@ -51,5 +44,46 @@ public class Main {
         node3.print();
         node4.print();
 
+        hasPath(1, 3);
+    }
+
+    static int[][] matrix = new int[][]{
+            {0, 1, 1, 0},
+            {1, 0, 1, 1},
+            {1, 1, 0, 1},
+            {0, 1, 1, 0}
+    };
+
+    static void hasPath(int source, int target) {
+        boolean[] visited = new boolean[matrix.length]; // массив посещенных вершин
+
+        LinkedList<Integer> queue = new LinkedList<>();
+
+        visited[source] = true;
+        queue.add(source);
+
+        while (!queue.isEmpty()) {
+            int current = queue.poll();
+
+            if (current == target) {
+                // путь от исходной вершины source до целевой target найден
+                System.out.println("Путь найден");
+                return;
+            }
+
+            for (int n = 0; n < matrix[current].length; n++) {
+                /*
+                Обход по всем смежным вершинам текущей вершины:
+                Если смежная вершина еще не была посещена, она отмечается как посещенная
+                и добавляется в очередь на обработку её смежных вершин.
+                 */
+                if (matrix[current][n] == 1 && !visited[n]) {
+                    visited[n] = true;
+                    queue.add(n);
+                }
+            }
+        }
+
+        System.out.println("Путь не найден");
     }
 }
